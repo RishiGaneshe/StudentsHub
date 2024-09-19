@@ -33,3 +33,5 @@
    ```bash
    git clone  https://github.com/RishiGaneshe/StudentsHub.git
    cd StudentsHub
+   npm install
+   npm start
