@@ -165,9 +165,6 @@ async function handlePostUpdateData(req,res){                           // POST 
           const book_image=req.body['book_image[]']
           const book_url=req.body['book_url[]']
           
-          const isValidId = /^\d{6}$/.test(id);
-          if (!isValidId ) return res.status(400).send('Invalid Id format');  
-
           const filter= {id:{ $eq: id }}
           const Sub_Syl_Arr=[sanitizeHTML(Sub_Syl[0]),sanitizeHTML(Sub_Syl[1]),sanitizeHTML(Sub_Syl[2]),sanitizeHTML(Sub_Syl[3]),sanitizeHTML(Sub_Syl[4])]                     // input sanatising of URLs present in arrays 
           const book_image_Arr=[sanitizeHTML(book_image[0]),sanitizeHTML(book_image[1]),sanitizeHTML(book_image[2]),]
@@ -211,9 +208,8 @@ async function handleAllSubjectDataModify(req,res){                     // POST 
      try{ 
           const {name,id}=req.body
 
-          const isValidId = /^\d{6}$/.test(id);
-          const isValidName = /^[a-zA-Z0-9_-]{3,16}$/.test(name);
-          if (!isValidId || !isValidName ) return res.status(400).send('Invalid Id or Name format');  
+          const isValidName = /^[a-zA-Z0-9_-]{1,16}$/.test(name);
+          if (!isValidName ) return res.status(400).send('Invalid Name format');  
 
           const subData= await Data.findOne({"name":{ $eq: name },"id":{ $eq: id }})
              if(!subData) { return res.status(404).send("No data for provided subject and id")}
