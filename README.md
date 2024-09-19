@@ -1,4 +1,4 @@
-# 🏫 Student Hub
+# 🏫 Students Hub
 
 **Student Hub** is a web application designed for students to manage academic resources, access personalized profiles, and stay organized with their study materials. Built using **Node.js**, **Express.js**, **EJS**, **HTML**, and **CSS**, the app provides a clean and responsive interface to help students track and manage their educational content.
 
