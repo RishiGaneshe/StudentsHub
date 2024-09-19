@@ -1,7 +1,5 @@
-const fs= require('fs')
 const multer= require('multer')
-const crypto= require('crypto')
-const OTP= require('../models/otp.js')
+const validator = require('validator')
 const Data= require('../models/data.js')
 const User= require('../models/user.js')
 const Image= require('../models/image.js')
@@ -9,7 +7,6 @@ const sanitizeHTML= require('sanitize-html')
 const { sessionStore } = require('./user.js')
 const UserData= require('../models/userData.js')
 const PassHash= require('../services/passHashing.js')
-
 
 
 const storage= multer.diskStorage({
@@ -21,7 +18,6 @@ const storage= multer.diskStorage({
      }
 })
 const upload= multer({storage:storage}).single('profilePic')
-
 
 
 async function handleGetDataForm(req,res){                              // Get on  /admin/data-form
@@ -37,7 +33,11 @@ async function handleGetDataForm(req,res){                              // Get o
 async function handleGetUpdateUserDataPage(req,res){                     // GET on  /admin/user-profile
      try{
            const username=sessionStore[sessionId].username
-           const data=await UserData.findOne({username:username})
+
+           const isValidUsername = /^[a-zA-Z0-9_-]{3,16}$/.test(username);
+           if (!isValidUsername ) return res.status(400).send('Invalid Username format');  
+
+           const data=await UserData.findOne({username:{ $eq: username }})
            res.render('userdata',{data:data,error:null})
      }catch(err){
            console.log(err)
@@ -60,8 +60,12 @@ async function handleGetModifyPage(req,res){
 async function handleGetAdminHomePage(req,res){                           // GET on /admin
      try{ 
           const username=sessionStore[sessionId].username
-          const data=await UserData.findOne({username:username})
-          const image= await Image.findOne({user_name:username})
+
+          const isValidUsername = /^[a-zA-Z0-9_-]{3,16}$/.test(username);
+          if (!isValidUsername ) return res.status(400).send('Invalid Username format');  
+
+          const data=await UserData.findOne({username:{ $eq: username }})
+          const image= await Image.findOne({user_name:{ $eq: username }})
           const path= image.path
           res.status(200).render('adminHome',{data:data,path:path,error:null})
      }catch(err){
@@ -84,7 +88,11 @@ async function handleGetImageUploadPage(req,res){
 async function handleGetAllUsers(req,res){                                // GET on /admin/alluser
      try{  
            const username=sessionStore[sessionId].username
-           const data=await UserData.findOne({username:username})
+
+           const isValidUsername = /^[a-zA-Z0-9_-]{3,16}$/.test(username);
+           if (!isValidUsername ) return res.status(400).send('Invalid Username format');  
+
+           const data=await UserData.findOne({username:{ $eq: username }})
            res.status(200).json(data)
      }catch(err){
           console.log(err)
@@ -156,8 +164,11 @@ async function handlePostUpdateData(req,res){                           // POST 
           const Sub_Syl=req.body['Sub_Syl[]']
           const book_image=req.body['book_image[]']
           const book_url=req.body['book_url[]']
+          
+          const isValidId = /^\d{6}$/.test(id);
+          if (!isValidId ) return res.status(400).send('Invalid Id format');  
 
-          const filter= {id:id}
+          const filter= {id:{ $eq: id }}
           const Sub_Syl_Arr=[sanitizeHTML(Sub_Syl[0]),sanitizeHTML(Sub_Syl[1]),sanitizeHTML(Sub_Syl[2]),sanitizeHTML(Sub_Syl[3]),sanitizeHTML(Sub_Syl[4])]                     // input sanatising of URLs present in arrays 
           const book_image_Arr=[sanitizeHTML(book_image[0]),sanitizeHTML(book_image[1]),sanitizeHTML(book_image[2]),]
           const book_url_Arr=[sanitizeHTML(book_url[0]),sanitizeHTML(book_url[1]),sanitizeHTML(book_url[2])]
@@ -169,9 +180,12 @@ async function handlePostUpdateData(req,res){                           // POST 
                module4_url:sanitizeHTML(module4_url), module5_url:sanitizeHTML(module5_url),
                book_image:book_image_Arr, Sub_Syl:Sub_Syl_Arr, book_url:book_url_Arr
           }}
+
+          const isValidName = /^[a-zA-Z0-9_-]{3,16}$/.test(name);
+          if (!isValidName ) return res.status(400).send('Invalid Name format');  
               
           const result = await Data.updateOne(filter, update)
-          const subData= await Data.findOne({name,id})
+          const subData= await Data.findOne({"name":{ $eq: name },"id":{ $eq: id }})
              if(!subData) { return res.status(404).send("No data for provided subject and id")}
                if(result){
                     if (result.matchedCount === 0) {
@@ -196,7 +210,12 @@ async function handlePostUpdateData(req,res){                           // POST 
 async function handleAllSubjectDataModify(req,res){                     // POST on  /admin/modify
      try{ 
           const {name,id}=req.body
-          const subData= await Data.findOne({name,id})
+
+          const isValidId = /^\d{6}$/.test(id);
+          const isValidName = /^[a-zA-Z0-9_-]{3,16}$/.test(name);
+          if (!isValidId || !isValidName ) return res.status(400).send('Invalid Id or Name format');  
+
+          const subData= await Data.findOne({"name":{ $eq: name },"id":{ $eq: id }})
              if(!subData) { return res.status(404).send("No data for provided subject and id")}
           res.status(200).render("adminSubDataUpdate",{subData:subData,error:null})
           console.log("Request for Data Updation")
@@ -210,20 +229,22 @@ async function handleAllSubjectDataModify(req,res){                     // POST 
 async function handlePostUpdateUserData(req,res){                         //  POST on  /admin/user-profile
      const username0= sessionStore[sessionId].username
      const {name,username,phone,profession,address}= req.body
+     const isValidUsername = /^[a-zA-Z0-9_-]{3,16}$/.test(username);
+     if (!isValidUsername ) return res.status(400).send('Invalid Username format');
      try{
-          const filter= {username:username0}
+          const filter= {username:{ $eq: username }}
           const update= {$set:{name,phone,profession,address}}
           const result= await UserData.updateOne(filter,update)
-          const data=await UserData.findOne({username:username})
+          const data=await UserData.findOne({username:{ $eq: username }})
                if(result){
                     if (result.matchedCount === 0) {
-                         res.status(404).render('userData',{data:data,error:'No Document found to Update'});
+                         res.status(404).render('userdata',{data:data,error:'No Document found to Update'});
                     }else {
                          console.log("Data updated Successfully by user "+username)
-                         res.status(200).render('userData',{data:data,error:'User Data updated successfully'});
+                         res.status(200).render('userdata',{data:data,error:'User Data updated successfully'});
                     }
                }else{
-                    res.status(404).render('userData',{data:data,error:'No Document found to Update'});
+                    res.status(404).render('userdata',{data:data,error:'No Document found to Update'});
                }
      }catch(err){
       console.log(err)
@@ -240,12 +261,12 @@ async function handlePostChangePassword(req,res){                        // POST
               return  res.status(404).render('adminChangePass',{error:'Enter Same Password In Confirm Field'});
          }
 
-         const user= await User.findOne({username:username})
+         const user= await User.findOne({username:{ $eq: username }})
          const match= await PassHash.verifyPassword(password,user.password)
          if(match){
              const hashedPassword= await PassHash.hashPassword(newPassword)
              console.log("An attemp made by user "+username+" to change password")
-             const filter= {username:username}
+             const filter= {username:{ $eq: username }}
              const update= { $set:{password:hashedPassword}}
 
              const result= await User.updateOne(filter,update)
@@ -286,7 +307,7 @@ async function handlePostChangePassword(req,res){                        // POST
                     const username= sessionStore[sessionId].username
                     if(!req.file.filename || !username || !req.file.path) { return reject(res.status(401).render('login',{error:'Unauthorize to access the page'}))}
                     
-                    const filter= ({user_name:username})
+                    const filter= ({user_name:{ $eq: username }})
                     const update={ $set:{
                          name: req.file.filename,
                          user_name: username,
@@ -323,10 +344,14 @@ async function handlePostChangePassword(req,res){                        // POST
  async function handlePostEmailChange(req,res){
      try{
          const {email}= req.body;
+
+         const isValidEmail = validator.isEmail(email);
+         if (!isValidUsername || !isValidEmail || !isValidOtp ) return res.status(400).send('Invalid Email format');  
+
          const username= sessionStore[sessionId].username
-         const user= await UserData.findOne({username:username})
+         const user= await UserData.findOne({username:{ $eq: username }})
           if(user){
-              const filter= { username:username}
+              const filter= { username:{ $eq: username }}
               const update= {$set: {email:sanitizeHTML(email)}}
               try{
                     const result= await UserData.updateOne(filter,update)
@@ -357,7 +382,6 @@ async function handleGetLogout(req,res){
             delete sessionStore[sessionId]
             res.clearCookie('session_id')
             console.log(user.username+" logged-out")
-          //   res.status(200).render('login',{error:'Logout successfully',captcha:null})
           res.status(200).redirect('/login')
          }
      }catch(err){
