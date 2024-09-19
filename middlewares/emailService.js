@@ -24,7 +24,7 @@ async function emailAuthentication(req,res,next){
 
      if(!tempMail) { return res.status(400).render('signUp',{error:'This email is Temporary and from untrusted domains'}) }  
     
-     const user= await UserData.findOne({email})
+     const user= await UserData.findOne({email:{ $eq: email}})
      if(user) { return  res.status(400).render('signUp',{error:'This Email is already used'}) }
      
      const otp= crypto.randomInt(100000,999999).toString();
