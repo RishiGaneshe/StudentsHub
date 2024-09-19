@@ -178,7 +178,7 @@ async function handlePostUpdateData(req,res){                           // POST 
                book_image:book_image_Arr, Sub_Syl:Sub_Syl_Arr, book_url:book_url_Arr
           }}
 
-          const isValidName = /^[a-zA-Z0-9_-]{3,16}$/.test(name);
+          const isValidName = /^[a-zA-Z0-9_-]{1,16}$/.test(name);
           if (!isValidName ) return res.status(400).send('Invalid Name format');  
               
           const result = await Data.updateOne(filter, update)
