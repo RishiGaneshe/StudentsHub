@@ -12,7 +12,7 @@
 - **📚 Resource Management**: Upload and organize academic resources such as notes, syllabus, and materials like recommended books free of cost.
 - **🔒 Admin Authentication**: Secure sign-up and login for personalized Admin profiles.
 - **📊 Admin Dashboard**: Manages the academic data that provided to the students and update the new data and books.
-- **📊 Application Security**: Website is secure against cyber attacks like XSS, login Bruteforce, CSRF attack, HTML Injection
+- **🛠️ Application Security**: Website is secure against cyber attacks like XSS, login Bruteforce, CSRF attack, HTML Injection
 
 
 ---
