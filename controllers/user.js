@@ -213,8 +213,6 @@ async function handleGetNotesPage(req,res){
 async function handleGetNotes(req,res){
     try{
         const id=req.params.id
-        const isValidId = /^\d{6}$/.test(id);
-        if (!isValidId) return res.status(400).send('Invalid Id format');     
         const result= await Data.findOne({id:{ $eq: id }})
         res.status(200).json(result)
     }catch(err){
