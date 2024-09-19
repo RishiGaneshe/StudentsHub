@@ -287,10 +287,14 @@ async function handlePostForgetPassChange(req,res){
                         if (result.matchedCount === 0) {
                              return res.status(404).render('adminForgetPass',{error:'Problem In Changing Password'});
                         }else if(result.modifiedCount===0){
-                             return res.status(200).render('login',{error:'Password Changed Successfully'});
+                             const captcha= await generateCaptcha();
+                             captchaStore[req.ip]= captcha
+                             return res.status(200).render('login',{error:'Password Changed Successfully',captcha:captcha});
                         }else {
                              console.log("Password changed Successfully by user "+username)
-                             return res.status(200).render('login',{error:'Password Changed Successfully'});
+                             const captcha= await generateCaptcha();
+                             captchaStore[req.ip]= captcha
+                             return res.status(200).render('login',{error:'Password Changed Successfully',captcha:captcha});
                         }
                    }else{
                         console.log("Error in password changed")
