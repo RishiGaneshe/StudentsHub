@@ -27,5 +27,5 @@
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/RishiGaneshe/Project-Student-Hub.git
-   cd student-hub
+   git clone  https://github.com/RishiGaneshe/StudentsHub.git
+   cd StudentsHub
