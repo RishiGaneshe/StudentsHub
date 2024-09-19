@@ -12,6 +12,10 @@ async function emailAuthentication(req,res,next){
   try{
      const {email}=req.body;
      if(!email)  { return res.status(403).end('Email is required')}
+    
+     const isValidEmail = validator.isEmail(email);
+     if (!isValidEmail) return res.status(400).send('Invalid Email Or OTP '); 
+    
      const mails= [
           "ipsacademy.org"
      ]
