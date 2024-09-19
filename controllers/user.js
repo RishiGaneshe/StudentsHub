@@ -1,5 +1,6 @@
 const crypto= require('crypto')
 const OTP= require('../models/otp.js')
+const validator = require('validator')
 const Data= require('../models/data.js')
 const User= require('../models/user.js')
 const Image= require('../models/image.js')
@@ -35,8 +36,11 @@ async function handleUserLogin(req,res){
             const captcha= await generateCaptcha()
             captchaStore[req.ip]= captcha
             return  res.status(404).render('login',{error:'Unable to Submit Username and Password',captcha:captcha})  }
+        
+        const isValidUsername = /^[a-zA-Z0-9_-]{3,16}$/.test(username);
+        if (!isValidUsername) return res.status(400).send('Invalid Username format');       
 
-        const user= await User.findOne({username}) 
+        const user= await User.findOne({username:{ $eq: username }}) 
             if(!user) {
                 const captcha= await generateCaptcha()
                 captchaStore[req.ip]= captcha
@@ -97,8 +101,13 @@ async function handleUserOtp(req,res){
         const {username,password,email,phone,otp}= req.body
         if(!username || !password || !email ) return res.end("all feilds are required")
 
+        const isValidUsername = /^[a-zA-Z0-9_-]{3,16}$/.test(username);
+        const isValidEmail = validator.isEmail(email);
+        const isValidOtp = /^\d{6}$/.test(otp);
+        if (!isValidUsername || !isValidEmail || !isValidOtp ) return res.status(400).send('Invalid Username Or Email Or OTP format');  
+
         if(!email || !otp ) {return res.status(400).json({msg:"email(identifier) and otp required"})}
-        const storedOtp= await OTP.findOne({email,otp}) 
+        const storedOtp= await OTP.findOne({email:{ $eq: email },otp:{ $eq: otp }}) 
 
         if(storedOtp){
             const hashedPassword= await PassHash.hashPassword(password)
@@ -125,9 +134,9 @@ async function handleUserOtp(req,res){
            })
            await newImage.save().then(()=>{console.log("File/Image uploaded successfully by user "+username)})
 
-            OTP.deleteOne({email,otp}).then(()=>{console.log("OTP cleared from database")})
+           await OTP.deleteOne({email:{ $eq: email },otp:{ $eq: otp }}).then(()=>{console.log("OTP cleared from database")})
             
-            res.status(200).render('afterUserCreate')
+           res.status(200).render('afterUserCreate')
         }else{
             res.status(404).end("Invalid or Expired OTP")
         }
@@ -204,7 +213,9 @@ async function handleGetNotesPage(req,res){
 async function handleGetNotes(req,res){
     try{
         const id=req.params.id
-        const result= await Data.findOne({id:id})
+        const isValidId = /^\d{6}$/.test(id);
+        if (!isValidId) return res.status(400).send('Invalid Id format');     
+        const result= await Data.findOne({id:{ $eq: id }})
         res.status(200).json(result)
     }catch(err){
         console.log(err)
@@ -246,7 +257,12 @@ async function handlePostContactForm(req,res){
 async function handlePostForgetPasswordOtp(req,res){                 // on working *
     try{
          const {email,username}= req.body
-         const result= await UserData.findOne({username:username,email:email})
+
+         const isValidUsername = /^[a-zA-Z0-9_-]{3,16}$/.test(username);
+         const isValidEmail =  validator.isEmail(email);
+         if (!isValidUsername || !isValidEmail) return res.status(400).send('Invalid Username or Email format');  
+
+         const result= await UserData.findOne({username:{ $eq: username },email:{ $eq: email }})
            if (!result){ return res.status(400).render('adminForgetPass',{error:"No user with provided email and username"})}
          const otp= crypto.randomInt(100000,999999).toString();
          await Email.sendForgetPassOtp(email,otp);
@@ -262,7 +278,11 @@ async function handlePostForgetPasswordOtp(req,res){                 // on worki
 async function handlePostForgetPassChange(req,res){
     try{
         const {otp,email,confirmPassword,newPassword}= req.body
-        const result3= await OTP.findOne({email:email,otp:otp})
+        const isValidEmail = validator.isEmail(email);
+        const isValidOtp = /^\d{6}$/.test(otp);
+        if (!isValidEmail || !isValidOtp ) return res.status(400).send('Invalid Email Or OTP format');  
+
+        const result3= await OTP.findOne({email:{ $eq: email },otp:{ $eq: otp }})
             if(!result3){
                 return res.status(400).render('adminOtp',{error:'Invalid OTP',email:email});
             }
@@ -271,14 +291,18 @@ async function handlePostForgetPassChange(req,res){
                 return  res.status(404).render('adminOtp',{error:'Enter Same Password At Both Fields',email:email});
             }
 
-            const result01= await UserData.findOne({email:email})
+            const result01= await UserData.findOne({email:{ $eq: email }})
             const username= result01.username
-            const user= await User.findOne({username:username})
+
+            const isValidUsername = /^[a-zA-Z0-9_-]{3,16}$/.test(username);
+            if (!isValidUsername) return res.status(400).send('Invalid Username format');
+
+            const user= await User.findOne({username:{ $eq: username }})
               if (!user){ return res.status(400).send("NO User Present")}
 
             const hashedPassword= await PassHash.hashPassword(newPassword)
             console.log("An attemp made by user "+username+" to change password")
-            const filter= {username:username}
+            const filter= {username:{ $eq: username }}
             const update= { $set:{password:hashedPassword}}
 
             const result= await User.updateOne(filter,update)
