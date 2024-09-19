@@ -1,0 +1,1025 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StudentHub</title>
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css"
+        integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
+
+    <!--Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link href="/index.css" rel="stylesheet">
+
+    <style>
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap");
+
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    }
+
+    body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: 100vh;
+    background: #232427;
+    }
+
+    body .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 40px 0;
+    }
+
+   
+    body .container .card {
+    position: relative;
+    min-width: 320px;
+    height: 400px;
+    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
+        inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+        5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    margin: 30px;
+    transition: 0.5s;
+    }
+
+    
+
+    body .container .card .box {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    background: #2a2b2f;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: 0.5s;
+    }
+
+    body .container .card .box:hover {
+    transform: translateY(-50px);
+    }
+
+    body .container .card .box:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    }
+
+    body .container .card .box .content {
+    padding: 20px;
+    text-align: center;
+    }
+
+    body .container .card .box .content h2 {
+    position: absolute;
+    top: -10px;
+    right: 30px;
+    font-size: 8rem;
+    color: rgba(255, 255, 255, 0.1);
+    }
+
+    body .container .card .box .content h3 {
+    font-size: 1.8rem;
+    color: #fff;
+    z-index: 1;
+    transition: 0.5s;
+    margin-bottom: 15px;
+    }
+
+    body .container .card .box .content p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
+    z-index: 1;
+    transition: 0.5s;
+    }
+
+    body .container .card .box .content a {
+    position: relative;
+    display: inline-block;
+    padding: 8px 20px;
+    background: black;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    margin-top: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
+    }
+    body .container .card .box .content a:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+    background: #fff;
+    color: #000;
+    }
+
+    /* books-css */
+
+        book-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 600px;
+    }
+
+    @keyframes initAnimation {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(-30deg);
+    }
+    }
+
+    .bookbox{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 5rem 0rem;
+
+    }
+
+    .book {
+    width: 200px;
+    height: 300px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    transition: 1s ease;
+    animation: 1s ease 0s 1 initAnimation;
+    }
+
+    .book-container:hover .book, 
+    .book-container:focus .book {
+    transform: rotateY(-30deg);
+    }
+
+    .book > :first-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: red;
+    width: 200px;
+    height: 300px;
+    transform: translateZ(15px);
+    background-color: #01060f;
+    border-radius: 0 2px 2px 0;
+    box-shadow: 5px 5px 20px #666;
+    }
+
+    .book::before {
+    position: absolute;
+    content: ' ';
+    background-color: blue;
+    left: 0;
+    top: 1px;
+    width: 28px;
+    height: 298px;
+    transform: translateX(184px) rotateY(90deg);
+    background: linear-gradient(90deg, 
+        #fff 0%,
+        #f9f9f9 5%,
+        #fff 10%,
+        #f9f9f9 15%,
+        #fff 20%,
+        #f9f9f9 25%,
+        #fff 30%,
+        #f9f9f9 35%,
+        #fff 40%,
+        #f9f9f9 45%,
+        #fff 50%,
+        #f9f9f9 55%,
+        #fff 60%,
+        #f9f9f9 65%,
+        #fff 70%,
+        #f9f9f9 75%,
+        #fff 80%,
+        #f9f9f9 85%,
+        #fff 90%,
+        #f9f9f9 95%,
+        #fff 100%
+        );
+    }
+
+    .book::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: ' ';
+    width: 200px;
+    height: 300px;
+    transform: translateZ(-15px);
+    background-color: #01060f;
+    border-radius: 0 2px 2px 0;
+    box-shadow: -10px 0 50px 10px #666;
+    }
+
+
+    </style>
+</head>
+
+<body >
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand me-auto fw-bold logo-text" href="#"><span>StudentHub</span></a>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">StudentHub</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link mx-lg-2" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-lg-2 active" aria-current="page" href="/notes"><i
+                                    class="fa-solid fa-magnifying-glass"></i> Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-lg-2" href="/about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-lg-2" href="/contact">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-lg-2" href="/ourteam">Our Team</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- <a href="/login" class="login-button px-10">Login</a> -->
+            <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+    <!-- End Of Navbar -->
+
+    <!-- Search bar selection-->
+    <section class="main">
+        <div class="contentbox">
+            <div class="search-box">
+                <input type="text" id="modules" placeholder="Search for Modules">
+                <div class="filters">
+                        <select id="Year">
+                            <option class="optionclass" value="" >Select Year</option>
+                            <option value="first-year">First Year</option>
+                            <option value="second-year">Second Year</option>
+                            <option value="third-year">Third Year</option>
+                            <option value="fourth-year">Fourth Year</option>
+                    </select>
+                    <select id="Semester">
+                        <option class="optionclass" value="">Select Sem</option>
+                        <option value="first-sem">First Sem</option>
+                        <option value="second-sem">Second Sem</option>
+                        <option value="third-sem">Third Sem</option>
+                        <option value="fourth-sem">Fourth Sem</option>
+                        <option value="fifth-sem">Fifth Sem</option>
+                        <option value="sixth-sem">Sixth Sem</option>
+                        <option value="seventh-sem">Seventh Sem</option>
+                        <option value="eighth-sem">Eighth Sem</option>
+                    </select>
+                    <select id="Branch">
+                        <option class="optionclass" value="">Select Branch</option>
+                        <option value="cse-core">CSE-Core</option>
+                        <option value="csit">CSIT</option>
+                        <option value="cs-iot">CS-IOT</option>
+                        <option value="cs-ds">CS-DS</option>
+                    </select>
+                    <select id="Subject">
+                            <!-- 1st year subjects -->
+                            <option class="optionclass" value="">Select Subject</option>
+                            <option value="1">M-1</option>
+                            <option value="2">APPLIED CHEM</option>
+                            <option value="3">BME-MP</option>
+                            <option value="4">BCE-EM</option>
+                            <option value="5">ENGLISH</option>
+                            <option value="6">M-2</option>
+                            <option value="7">OMP</option>
+                            <option value="8">EGV</option>
+                            <option value="9">BEEE</option>
+                            <option value="10">PPS</option>
+                            <!-- 2nd year subjects -->
+                            <option value="11">M-3</option> 
+                            <option value="12">DCS</option>
+                            <option value="13">DSA</option>
+                            <option value="14">CSO</option>
+                            <option value="15">PMME</option>
+                            <option value="16">DS</option>
+                            <option value="17">ADC</option>
+                            <option value="18">OPPs</option>
+                            <option value="19">ADA</option>
+                            <option value="20">SSIC</option>
+
+                            <option value="21">M-3</option>
+                            <option value="22">DBMS</option>
+                            <option value="23">DSA</option>
+                            <option value="24">COA</option>
+                            <option value="25">OPPs</option>
+                            <option value="26">Web-Tech</option>
+                            <option value="27">CN</option>
+                            <option value="28">TOC</option>
+                            <option value="29">ADA</option>
+                            <option value="30">SSIC</option>
+
+                            <option value="31"></option>
+                            <option value="32"></option>
+                            <option value="33"></option>
+                            <option value="34"></option>
+                            <option value="35"></option>
+                            <option value="36"></option>
+                            <option value="37"></option>
+                            <option value="38"></option>
+                            <option value="39"></option>
+                            <option value="40"></option>
+
+                            <option value="41"></option>
+                            <option value="42"></option>
+                            <option value="43"></option>
+                            <option value="44"></option>
+                            <option value="45"></option>
+                            <option value="46"></option>
+                            <option value="47"></option>
+                            <option value="48"></option>
+                            <option value="49"></option>
+                            <option value="50"></option>
+                            <!-- Third-year subjects -->
+                            <option value="111">Compiler D</option>
+                            <option value="112">AI</option>
+                            <option value="113">Sys-Softwere</option>
+                            <option value="114">MP-MC</option>
+                            <option value="115">STQA</option>
+                            <option value="116">Distri-System</option>
+                            <option value="117">C-NS</option>
+                            <option value="118">P&D Algo</option>
+                            <option value="119">Mobile Comp.</option>
+                            <option value="120">Elective</option>
+
+                            <option value="121">DBMS</option>
+                            <option value="122">OS</option>
+                            <option value="123">FLA</option>
+                            <option value="124">SEPM</option>
+                            <option value="125">SM</option>
+                            <option value="126">Sci-Aptitude</option>
+                            <option value="127">IOT</option>
+                            <option value="128">CN</option>
+                            <option value="129">Cyber</option>
+                            <option value="130">FAIML</option>
+
+                            <option value="131">IOT-Fundam.</option>
+                            <option value="132">Embedded Syst</option>
+                            <option value="133">WSN</option>
+                            <option value="134">SDev-IOT</option>
+                            <option value="135">Elective 5</option>
+                            <option value="136">IOT-Proto&Stand.</option>
+                            <option value="137">IOT-App Dev</option>
+                            <option value="138">IOT-Device Int</option>
+                            <option value="139">Elective-02</option>
+                            <option value="140">Elective-03</option>
+
+                            <option value="141">Intro to DS</option>
+                            <option value="142">ML</option>
+                            <option value="143">Data Mining&WareH.</option>
+                            <option value="144">SM of DS</option>
+                            <option value="145">Big Data Analy.</option>
+                            <option value="146">AMLT</option>
+                            <option value="147">Data Visual.</option>
+                            <option value="148">Cloud Comp-DS</option>
+                            <option value="149">Optimiz.Tech -DS</option>
+                            <option value="150">Elective-001</option>
+
+                            <!-- fourth-year subjects-->
+                            <option value="1111">Cyber</option>
+                            <option value="1112">NLP</option>
+                            <option value="1113">HP-Comp.</option>
+                            <option value="1114">Elective-3</option>
+                            <option value="1115"></option>
+                            <option value="1116">Enternship</option>
+                            <option value="1117">Major-Pro</option>
+
+                            <option value="1121">Data Sci</option>
+                            <option value="1122">Compiler D</option>
+                            <option value="1123">Patter R</option>
+                            <option value="1124">E-Com & Web-T</option>
+                            <option value="1125">####</option>
+                            <option value="1126">Block-Chain</option>
+                            <option value="1127">Cloud CO</option>
+                            <option value="1128">Wireless&MC</option>
+
+                            <option value="1131">IOT-Plat.& Archi</option>
+                            <option value="1132">IOT-Security</option>
+                            <option value="1133">Elective-04</option>
+                            <option value="1134">Project Mang IOT</option>
+                            <option value="1135">####</option>
+                            <option value="1136">IOT-Major Pro</option>
+                            <option value="1137">Seminar On ET</option>
+
+                            <option value="1141">Tools&Tech-DS</option>
+                            <option value="1142">Data Ethics&Priv.</option>
+                            <option value="1143">Capstone Pro-DS</option>
+                            <option value="1144">Elective-002</option>
+                            <option value="1146">Major Pro-DS</option>
+                            <option value="1147">Seminar-ET</option>
+                    </select>
+                </div>
+                <button class="get" id="fetchObjectBtn">Click Here</button>
+            </div>
+        </div>
+
+        <div id="result">
+
+        <div class="container">
+            <h1>Get the notes you need...</h1>
+           
+
+            </div>
+        </div>
+        
+    </section>
+
+    
+
+    <!-- <script src="index.js"></script> -->
+
+    <!--Bootstrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!--fontawesome-->
+    <script src="https://kit.fontawesome.com/67fc93ad78.js" crossorigin="anonymous"></script>
+
+
+    <!--JavaScript for highlighting active link-->
+    <script>
+        const activepage = window.location.pathname;
+        const navlinks = document.querySelectorAll('nav a');
+
+        navlinks.forEach(link => {
+            // Check if the current link's href matches the active page
+            if (link.href.includes(`${activepage}`)) {
+                link.classList.add('active');
+            } else {
+                // If the active page is not the home page, remove the active class from all links
+                if (activepage !== '/' && link.getAttribute('href') !== './search.html') {
+                    link.classList.remove('active');
+                }
+            }
+        });
+
+      
+    </script>
+
+<!-- dropdown semester fetching-->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectedValue = localStorage.getItem('selectedValue');
+        if (selectedValue && selectedValue !== 'default') {
+            const semester = document.getElementById('Semester');
+            const option = semester.querySelector(`option[value="${selectedValue}"]`);
+            if (option) {
+                option.selected = true;
+            }
+        }
+    });
+</script>
+
+<!-- Drop-down year fetching -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectedValueYear = localStorage.getItem('selectedValueYear');
+        if (selectedValueYear && selectedValueYear !== 'default') {
+            const semester = document.getElementById('Year');
+            const option = semester.querySelector(`option[value="${selectedValueYear}"]`);
+            if (option) {
+                option.selected = true;
+            }
+        }
+    });
+</script>
+
+<!-- Function to update subject options based on the selected branch -->
+
+<script>
+    function updateSubjects() {
+        
+        var branchDropdown = document.getElementById("Branch")
+        var subjectDropdown = document.getElementById("Subject");
+        var selectedSem = document.getElementById("Semester").value;
+        var selectedBranch = document.getElementById("Branch").value;
+        var selectedSubject = document.getElementById("Subject").value;
+
+        subjectDropdown.innerHTML = "";
+        
+        if ( selectedBranch === "") {
+            addOption(subjectDropdown, "Select Subject", "");
+        }
+        if(!(selectedBranch)== "" && selectedSem ==="" ){
+            addOption(subjectDropdown, "Select Subject", "");
+        } else if(selectedSem==='first-sem'){
+        if (selectedBranch === "") {
+            addOption(subjectDropdown, "Select Subject", "");
+        } else if (selectedBranch === "cse-core") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "M-1", "1");
+            addOption(subjectDropdown, "APPLIED CHEM", "2");
+            addOption(subjectDropdown, "BME-MP", "3");
+            addOption(subjectDropdown, "BCE-EM", "4");
+            addOption(subjectDropdown, "ENGLISH", "5");
+        } else if ( selectedBranch === "csit") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "M-1", "1");
+            addOption(subjectDropdown, "APPLIED CHEM", "2");
+            addOption(subjectDropdown, "BME-MP", "3");
+            addOption(subjectDropdown, "BCE-EM", "4");
+            addOption(subjectDropdown, "ENGLISH", "5");
+        } else if ( selectedBranch === "cs-iot") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "M-1", "1");
+            addOption(subjectDropdown, "APPLIED CHEM", "2");
+            addOption(subjectDropdown, "BME-MP", "3");
+            addOption(subjectDropdown, "BCE-EM", "4");
+            addOption(subjectDropdown, "ENGLISH", "5");
+        } else if ( selectedBranch === "cs-ds") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "M-1", "1");
+            addOption(subjectDropdown, "APPLIED CHEM", "2");
+            addOption(subjectDropdown, "BME-MP", "3");
+            addOption(subjectDropdown, "BCE-EM", "4");
+            addOption(subjectDropdown, "ENGLISH", "5");
+        }  else if ( selectedBranch === "cs-aiml") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "M-1", "1");
+            addOption(subjectDropdown, "APPLIED CHEM", "2");
+            addOption(subjectDropdown, "BME-MP", "3");
+            addOption(subjectDropdown, "BCE-EM", "4");
+            addOption(subjectDropdown, "ENGLISH", "5");
+        }
+    }
+        
+
+    if(selectedSem==='second-sem'){
+        if (selectedBranch === "") {
+            addOption(subjectDropdown, "Select Subject", "");
+        } else if (selectedBranch === "cse-core") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "M-2", "6");
+            addOption(subjectDropdown, "OPM", "7");
+            addOption(subjectDropdown, "EGV", "8");
+            addOption(subjectDropdown, "BEEE", "9");
+            addOption(subjectDropdown, "PPS", "10");
+        } else if (selectedBranch === "csit") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "M-2", "6");
+            addOption(subjectDropdown, "OPM", "7");
+            addOption(subjectDropdown, "EGV", "8");
+            addOption(subjectDropdown, "BEEE", "9");
+            addOption(subjectDropdown, "PPS", "10");
+        } else if (selectedBranch === "cs-iot") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "M-2", "6");
+            addOption(subjectDropdown, "OPM", "7");
+            addOption(subjectDropdown, "EGV", "8");
+            addOption(subjectDropdown, "BEEE", "9");
+            addOption(subjectDropdown, "PPS", "10");
+        } else if (selectedBranch === "cs-ds") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "M-2", "6");
+            addOption(subjectDropdown, "OPM", "7");
+            addOption(subjectDropdown, "EGV", "8");
+            addOption(subjectDropdown, "BEEE", "9");
+            addOption(subjectDropdown, "PPS", "10");
+        } else if (selectedBranch === "cs-aiml") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "M-2", "6");
+            addOption(subjectDropdown, "OPM", "7");
+            addOption(subjectDropdown, "EGV", "8");
+            addOption(subjectDropdown, "BEEE", "9");
+            addOption(subjectDropdown, "PPS", "10");
+        }
+    }
+
+    if(selectedSem==='third-sem'){
+        if (selectedBranch === "") {
+            addOption(subjectDropdown, "Select Subject", "");
+        } else if (selectedBranch === "cse-core") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "M-3", "21");
+            addOption(subjectDropdown, "DBM", "22");
+            addOption(subjectDropdown, "COA", "23");
+            addOption(subjectDropdown, "DSA", "24");
+            addOption(subjectDropdown, "OPPs", "25");
+        } else if (selectedBranch === "csit") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "M-3", "11");
+            addOption(subjectDropdown, "DCS","12");
+            addOption(subjectDropdown, "DSA", "13");
+            addOption(subjectDropdown, "CSO", "14");
+            addOption(subjectDropdown, "PMME", "15");
+        } else if (selectedBranch === "cs-iot") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "M-3", "21");
+            addOption(subjectDropdown, "DBM", "22");
+            addOption(subjectDropdown, "COA", "23");
+            addOption(subjectDropdown, "DSA", "24");
+            addOption(subjectDropdown, "OPPs", "25");
+        } else if (selectedBranch === "cs-ds") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "M-3", "21");
+            addOption(subjectDropdown, "DBM", "22");
+            addOption(subjectDropdown, "COA", "23");
+            addOption(subjectDropdown, "DSA", "24");
+            addOption(subjectDropdown, "OPPs", "25");
+        } else if (selectedBranch === "cs-aiml") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "M-2", "6");
+            addOption(subjectDropdown, "OPM", "7");
+            addOption(subjectDropdown, "EGV", "8");
+            addOption(subjectDropdown, "BEEE", "9");
+            addOption(subjectDropdown, "PPS", "10");
+        }
+    }
+
+    if(selectedSem==='fourth-sem'){
+        if (selectedBranch === "") {
+            addOption(subjectDropdown, "Select Subject", "");
+        } else if (selectedBranch === "cse-core") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "Web-Tech", "26");
+            addOption(subjectDropdown, "CN", "27");
+            addOption(subjectDropdown, "TOC", "28");
+            addOption(subjectDropdown, "ADA", "29");
+            addOption(subjectDropdown, "SEPM", "30");
+        } else if (selectedBranch === "csit") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "DS", "16");
+            addOption(subjectDropdown, "ADC", "17");
+            addOption(subjectDropdown, "OPPs", "18");
+            addOption(subjectDropdown, "ADA", "19");
+            addOption(subjectDropdown, "SSIC", "20");
+        } else if (selectedBranch === "cs-iot") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "Web-Tech", "26");
+            addOption(subjectDropdown, "CN", "27");
+            addOption(subjectDropdown, "TOC", "28");
+            addOption(subjectDropdown, "ADA", "29");
+            addOption(subjectDropdown, "SEPM", "30");
+        } else if (selectedBranch === "cs-ds") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "Web-Tech", "26");
+            addOption(subjectDropdown, "CN", "27");
+            addOption(subjectDropdown, "TOC", "28");
+            addOption(subjectDropdown, "ADA", "29");
+            addOption(subjectDropdown, "SEPM", "30");
+        } else if (selectedBranch === "cs-aiml") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "M-2", "6");
+            addOption(subjectDropdown, "OPM", "7");
+            addOption(subjectDropdown, "EGV", "8");
+            addOption(subjectDropdown, "BEEE", "9");
+            addOption(subjectDropdown, "PPS", "10");
+        }
+    }
+
+    if(selectedSem==='fifth-sem'){
+        if (selectedBranch === "") {
+            addOption(subjectDropdown, "Select Subject", "");
+        } else if (selectedBranch === "cse-core") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "Compiler D", "111");
+            addOption(subjectDropdown, "AI", "112");
+            addOption(subjectDropdown, "Sys-Softwere", "113");
+            addOption(subjectDropdown, "MP-MC", "114");
+            addOption(subjectDropdown, "STQA", "115");
+        } else if ( selectedBranch === "csit") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "DBMS", "121");
+            addOption(subjectDropdown, "OS", "122");
+            addOption(subjectDropdown, "FLA", "123");
+            addOption(subjectDropdown, "SEPM", "124");
+            addOption(subjectDropdown, "SM", "125");
+        } else if ( selectedBranch === "cs-iot") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "IOT-Fundam", "131");
+            addOption(subjectDropdown, "Embedded Syst", "132");
+            addOption(subjectDropdown, "WSN", "133");
+            addOption(subjectDropdown, "Soft-Dev IOT", "134");
+            addOption(subjectDropdown, "Elective", "135");
+        } else if ( selectedBranch === "cs-ds") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "Intro To DS", "141");
+            addOption(subjectDropdown, "ML", "142");
+            addOption(subjectDropdown, "Data Mining&WareH.", "143");
+            addOption(subjectDropdown, "SM-DS", "144");
+            addOption(subjectDropdown, "Elective-001", "145");
+        }  else if ( selectedBranch === "cs-aiml") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "M-1", "1");
+            addOption(subjectDropdown, "APPLIED CHEM", "2");
+            addOption(subjectDropdown, "BME-MP", "3");
+            addOption(subjectDropdown, "BCE-EM", "4");
+            addOption(subjectDropdown, "ENGLISH", "5");
+        }
+    }
+        
+
+    if(selectedSem==='sixth-sem'){
+        if (selectedBranch === "") {
+            addOption(subjectDropdown, "Select Subject", "");
+        } else if (selectedBranch === "cse-core") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "Distri-System", "116");
+            addOption(subjectDropdown, "C-NS", "117");
+            addOption(subjectDropdown, "P&A Algo", "118");
+            addOption(subjectDropdown, "Mobile Comp.", "119");
+            addOption(subjectDropdown, "Elective", "120");
+        } else if (selectedBranch === "csit") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "Sci-Aptitude", "126");
+            addOption(subjectDropdown, "IOT", "127");
+            addOption(subjectDropdown, "CN", "128");
+            addOption(subjectDropdown, "Cyber", "129");
+            addOption(subjectDropdown, "FAIML", "130");
+        } else if (selectedBranch === "cs-iot") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "IOT-Proto&Stand", "136");
+            addOption(subjectDropdown, "IOT-App Dev", "137");
+            addOption(subjectDropdown, "IOT Device Inte", "138");
+            addOption(subjectDropdown, "Elective-01", "139");
+            addOption(subjectDropdown, "Elective-02", "140");
+        } else if (selectedBranch === "cs-ds") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "AMLT", "146");
+            addOption(subjectDropdown, "Data Visual.", "147");
+            addOption(subjectDropdown, "Cloud Comp.-DS", "148");
+            addOption(subjectDropdown, "Optimzch.Tech-DS", "149");
+            addOption(subjectDropdown, "Elective-002", "150");
+        } else if (selectedBranch === "cs-aiml") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "M-2", "6");
+            addOption(subjectDropdown, "OPM", "7");
+            addOption(subjectDropdown, "EGV", "8");
+            addOption(subjectDropdown, "BEEE", "9");
+            addOption(subjectDropdown, "PPS", "10");
+        }
+    }
+
+    if(selectedSem==='seventh-sem'){
+        if (selectedBranch === "") {
+            addOption(subjectDropdown, "Select Subject", "");
+        } else if (selectedBranch === "cse-core") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "Cyber", "1111");
+            addOption(subjectDropdown, "NLP", "1112");
+            addOption(subjectDropdown, "HG-Comp.", "1113");
+            addOption(subjectDropdown, "Elective-3", "1114");
+        } else if (selectedBranch === "csit") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "Data-Science", "1121");
+            addOption(subjectDropdown, "Compiler D","1122");
+            addOption(subjectDropdown, "Pattern-R", "1123");
+            addOption(subjectDropdown, "E-Com & Web-T", "1124");
+        } else if (selectedBranch === "cs-iot") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "IOT-Plat.&Archi", "1131");
+            addOption(subjectDropdown, "IOT-Security", "1132");
+            addOption(subjectDropdown, "Elective 01", "1133");
+            addOption(subjectDropdown, "Pro-Mang IOT", "1134");
+        } else if (selectedBranch === "cs-ds") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "Tools&Tech-DS", "1141");
+            addOption(subjectDropdown, "Data Ethics&Priv.", "1142");
+            addOption(subjectDropdown, "Capstone Tech-DS", "1143");
+            addOption(subjectDropdown, "Elective-0001", "1144");
+        } else if (selectedBranch === "cs-aiml") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "M-2", "6");
+            addOption(subjectDropdown, "OPM", "7");
+            addOption(subjectDropdown, "EGV", "8");
+            addOption(subjectDropdown, "BEEE", "9");
+            addOption(subjectDropdown, "PPS", "10");
+        }
+    }
+
+    if(selectedSem==='eighth-sem'){
+        if (selectedBranch === "") {
+            addOption(subjectDropdown, "Select Subject", "");
+        } else if (selectedBranch === "cse-core") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "EnternShip", "1116");
+            addOption(subjectDropdown, "Major-Pro", "1117");
+        } else if (selectedBranch === "csit") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "Block-Chain", "1126");
+            addOption(subjectDropdown, "Cloud CO", "1127");
+            addOption(subjectDropdown, "Wireless & MC", "1128");
+        } else if (selectedBranch === "cs-iot") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "Major-Pro IOT", "1136");
+            addOption(subjectDropdown, "Seminar on ET", "1137");
+        } else if (selectedBranch === "cs-ds") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "Major Pro-DS", "1146");
+            addOption(subjectDropdown, "Seminar-ET", "1147");
+        } else if (selectedBranch === "cs-aiml") {
+            addOption(subjectDropdown, "Select Subject", "");
+            addOption(subjectDropdown, "M-2", "6");
+            addOption(subjectDropdown, "OPM", "7");
+            addOption(subjectDropdown, "EGV", "8");
+            addOption(subjectDropdown, "BEEE", "9");
+            addOption(subjectDropdown, "PPS", "10");
+        }
+    }
+
+
+        // Function to add an option to the subject dropdown
+        function addOption(select, text, value) {
+            var option = document.createElement("option");
+            option.text = text;
+            option.value = value;
+            select.add(option);
+        }
+    }
+
+    // Call the updateSubjects function when the branch dropdown value changes
+    // document.getElementById("Year").addEventListener("change", updateSubjects);
+    document.getElementById("Semester").addEventListener("change", updateSubjects);
+    document.getElementById("Branch").addEventListener("change", updateSubjects);
+
+    updateSubjects();
+
+</script>
+
+
+<script>
+
+
+document.getElementById('fetchObjectBtn').addEventListener('click', fetchObjectData);
+
+function fetchObjectData() {
+    const selectId=document.getElementById("Subject").value;
+    
+    const url= `http://192.168.1.6:5000/newdata/${selectId}`
+    // const url= `http://localhost:5000/newdata/${selectId}`
+
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();  // Parse the JSON from the response
+        })
+        .then(object => {
+            console.log('Received object:', object);
+            if(object==null) return   result.innerHTML= ` <div class="container"><h1>No Data Present</h1></div>`
+            displayObjectData(object);
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+}
+
+function displayObjectData(object) {
+    const outputDiv = document.getElementById('output');
+    result.innerHTML=`
+                        <div class="container">
+    <div class="card">
+        <div class="box">
+        <div class="content">
+            <h2>01</h2>
+            <h3>${object.name}</h3>
+            <p>${object.module1}<p>
+            <p>${object.Sub_Syl[0]}</p>
+            <a href="${object.module1_url}" target="_blank">Read More</a>
+        </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="box">
+        <div class="content">
+            <h2>02</h2>
+            <h3>${object.name}</h3>
+            <p>${object.module2}<p>
+            <p>${object.Sub_Syl[1]}</p>
+            <a href="${object.module2_url}" target="_blank">Read More</a>
+        </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="box">
+        <div class="content">
+            <h2>03</h2>
+            <h3>${object.name}</h3>
+            <p>${object.module3}<p>
+            <p>${object.Sub_Syl[2]}</p>
+            <a href="${object.module3_url}" target="_blank">Read More</a>
+        </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="box">
+        <div class="content">
+            <h2>04</h2>
+            <h3>${object.name}</h3>
+            <p>${object.module4}<p>
+            <p>${object.Sub_Syl[3]}</p>
+            <a href="${object.module4_url}" target="_blank">Read More</a>
+        </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="box">
+        <div class="content">
+            <h2>05</h2>
+            <h3>${object.name}</h3>
+            <p>${object.module5}<p>
+            <p>${object.Sub_Syl[4]}</p>
+            <a href="${object.module5_url}" target="_blank">Read More</a>
+        </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="box">
+        <div class="content">
+            <h2>Q</h2>
+            <h3>${object.name}</h3>
+            <h3>Previous Year Paper</h3>
+            <p></p>
+            <a href="${object.previousY}" target="_blank">Read More</a>
+        </div>
+        </div>
+    </div>
+    </div>
+    
+
+    <div>
+        <h2 class="common-heading text-center fw-bold common-title">Recommended Books</h2>
+    </div>
+
+
+    <div class="bookbox">
+                <a class="book-container" href="${object.book_url[0]}" target="_blank" rel="noreferrer noopener">
+                    <div class="book">
+                        <img alt="" src="${object.book_image[0]}" />
+                    </div>
+                </a>
+    
+                <a class="book-container" href="${object.book_url[1]}" target="_blank" rel="noreferrer noopener">
+                    <div class="book">
+                        <img alt="" src="${object.book_image[1]}" />
+                    </div>
+                </a>
+
+                <a class="book-container" href="${object.book_url[2]}" target="_blank" rel="noreferrer noopener">
+                    <div class="book">
+                        <img alt="" src="${object.book_image[2]}" />
+                    </div>
+                </a>
+            </div>
+    `;
+}        
+
+</script>
+
+<script>
+    for (var key in localStorage) {
+    var value = localStorage.getItem(key);
+    console.log(key + ': ' + value);
+}
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StudentHub</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css"
+    integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
+
+  <!--Bootstrap CSS-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <link href="index.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+  <!--Navbar-->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand me-auto fw-bold logo-text" href="#"><span>StudentHub</span></a>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">StudentHub</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2 active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+
+              <a class="nav-link mx-lg-2" href="/notes"><i class="fa-solid fa-magnifying-glass"></i> Notes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="/contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="/ourteam">Our Team</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- <a href="/login" class="login-button px-10">Login</a> -->
+      <!-- <a href="#" class="login-button px-9">Sign Up</a> -->
+      <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+  <!-- End Of Navbar -->
+
+  <section>
+    <div class="aboutus">
+      <div class="container">
+        <div class="row">
+          <div class="flex">
+            <h2>ABOUT US</h2>
+            <div class="vl">
+              <div class="detail">
+                <p>Welcome to StudentHub, a collaborative platform where students and educators to build a strong<br>
+                  academic community and share valuable study resources. Our mission is to provide college<br>students
+                  with
+                  free access to high-quality study materials to support their academic journey.
+                </p>
+                <p>
+                  StudentHub was founded with the vision of addressing the challenges faced by college students<br>in
+                  accessing supplementary study resources. Our platform allows individuals to upload
+                  verified<br>original study notes,
+                  lecture materials, and revision notes, empowering learners to excel in their<br>coursework and exams.
+                </p>
+                <p>
+                  Inspired by the desire to make quality educational resources more accessible, StudentHub
+                  was<br>established
+                  in 2024. Since then, we have been committed to fostering a sense of community and<br>shared learning
+                  among
+                  students. Our platform encourages collaboration and knowledge-sharing<br>to help students achieve
+                  their
+                  academic goals.
+                </p>
+                <p>
+                  Join StudentHub today to become part of our growing learning community. Whether you're looking<br>for
+                  study
+                  notes or want to share your own, StudentHub is here to support you every step of the way.
+                </p>
+              </div>
+              <div class="d-flex team">
+                <img src="./Image/data.svg" alt="img" class="img-fluid">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Footer Section-->
+
+  <footer>
+    <div class="footerContainer">
+      <div class="socialIcons">
+        <a href=""><i class="fa-brands fa-facebook"></i></a>
+        <a href=""><i class="fa-brands fa-instagram"></i></a>
+        <a href=""><i class="fa-brands fa-twitter"></i></a>
+        <a href=""><i class="fa-brands fa-google-plus"></i></a>
+        <a href=""><i class="fa-brands fa-youtube"></i></a>
+      </div>
+      <div class="footerNav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+          <li><a href="/ourteam">our Team</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  
+
+
+  <!--Bootstrap JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+  <!--fontawesome-->
+  <script src="https://kit.fontawesome.com/67fc93ad78.js" crossorigin="anonymous"></script>
+
+  <script>
+    const activepage = window.location.pathname;
+    const navlinks = document.querySelectorAll('nav a');
+
+    navlinks.forEach(link => {
+      // Check if the current link's href matches the active page
+      if (link.href.includes(`${activepage}`)) {
+        link.classList.add('active');
+      } else {
+        // If the active page is not the home page, remove the active class from all links
+        if (activepage !== '/' && link.getAttribute('href') !== './search.html') {
+          link.classList.remove('active');
+        }
+      }
+    });
+  </script>
+
+  <script>
+    function getUrlParams() {
+      const searchParams = new URLSearchParams(window.location.search);
+      const params = {};
+      for (const [key, value] of searchParams) {
+        params[key] = value;
+      }
+      return params;
+    }
+  </script>
+
+</body>
+
+</html>

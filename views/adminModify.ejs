@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .form-container {
+            width: 60%;
+            height: 45%;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #303030 ;        
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="url"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="url"]:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+        }
+
+        #myButton {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 14px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        #myButton:hover {
+            background-color: #0056b3;
+        }
+
+        #H1{
+            color: #007bff;
+        }
+
+        .book-images img {
+            max-width: 100px;
+            margin-right: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Submit button styling */
+        .form-group input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        #Btn{
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 8%;
+            margin-top: 3px;
+        }
+
+        #Btn:hover{
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container" id="result">
+    <form id="result" action="/admin/modify" method="POST">
+            <div class="form-group">
+                <h1 align="center">Update Subject Data</h1>
+            </div>
+            <div class="form-group">
+                <label for="Name">Name:</label>
+                <input type="text" id="Name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="Id">Id:</label>
+                <input type="text" id="Id" name="id">
+            </div>
+          
+    <button type="submit" id="myButton" >Send</button>
+    <button type="button" id="myButton"  onclick="window.location.href='/admin'" >Back</button>
+  </div>
+</form>
+
+
+</body>
+</html>

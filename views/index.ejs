@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StudentHub</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css"
+    integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
+
+  <!--Bootstrap CSS-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <link href="index.css" rel="stylesheet">
+</head>
+
+<body onload="setdefault1(),setdefault2(),setdefault3(),setdefault4()">
+
+  <!--Navbar-->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand me-auto fw-bold logo-text" href="/"><span>StudentHub</span></a>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">StudentHub</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2 active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="/notes"><i class="fa-solid fa-magnifying-glass"></i> Notes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="/contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="/ourteam">Our Team</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <a href="/login" class="login-button px-10">Sign-in</a>
+      <a href="/signup" class="login-button px-9">Sign-up</a>
+      <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+  <!-- End Of Navbar -->
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container one">
+      <div class="row align-items-center">
+        <div class="col-md-6 hidediv">
+          <div class="d-flex hideimg">
+            <img src="./Image/Creative Team.gif" alt="img" class="img-fluid mx-5 jaddu">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="text">
+            <h4>Struggling to Stay Ahead in College?</h4>
+            <h1>Unleash Your Potential with Our Notes, Where Learning Becomes Legendary!</h1>
+            <p>At STUDENTHUB, we provide curated study notes designed to empower college students. Elevate your
+              learning, conquer challenges, and unlock your academic potential with us!</p>
+          </div>
+          <div class="cta">
+            <button class="button-85"><a href="#">Explore</a></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End of Hero Section -->
+
+  <!-- Selection section -->
+  <section class="Selection">
+    <div class="container four">
+      <div class="text-center my-5">
+        <h1>Select Your College Year !</h1>
+      </div>
+      <button class="joc" id="btn" onclick="showdetails1()">FIRST YEAR</button>
+      <div class="container btn-content">
+        <div class="row gy-3" id="Select1">
+          <div class="col-md-4 joc-container ">
+            <a href="/notes?sem=1">
+              <button class="joc joc2" onclick="passValue('first-sem');passValueYear('first-year')">SEMESTER 1</button>
+            </a>
+          </div>
+          <div class="col-md-4 joc-container">
+            <a href="/notes?sem=2">
+              <button class="joc joc2" id="btn" onclick="passValue('second-sem');passValueYear('first-year')">SEMSTER 2</button>
+            </a>
+          </div>
+        </div>
+      </div>
+      <button class="joc" id="btn" onclick="showdetails2()">SECOND YEAR</button>
+      <div class="container btn-content">
+        <div class="row gy-3" id="Select2">
+          <div class="col-md-4 joc-container">
+            <a href="/notes?sem=3">
+              <button class="joc joc2" id="btn" onclick="passValue('third-sem');passValueYear('second-year')">SEMSTER 3</button>
+            </a>
+          </div>
+          <div class="col-md-4 joc-container">
+            <a href="/notes?sem=4">
+              <button class="joc joc2" id="btn" onclick="passValue('fourth-sem');passValueYear('second-year')">SEMSTER 4</button>
+            </a>
+          </div>
+        </div>
+      </div>
+      <button class="joc" id="btn" onclick="showdetails3()">THIRD YEAR</button>
+      <div class="container btn-content">
+        <div class="row gy-3" id="Select3">
+          <div class="col-md-4 joc-container">
+            <a href="/notes?sem=5">
+              <button class="joc joc2" id="btn" onclick="passValue('fifth-sem');passValueYear('third-year')">SEMSTER 5</button>
+            </a>
+          </div>
+          <div class="col-md-4 joc-container">
+            <a href="/notes?sem=6">
+              <button class="joc joc2" id="btn" onclick="passValue('sixth-sem');passValueYear('third-year')">SEMSTER 6</button>
+            </a>
+          </div>
+        </div>
+      </div>
+      <button class="joc" id="btn" onclick="showdetails4()">FOURTH YEAR</button>
+      <div class="container btn-content">
+        <div class="row gy-3" id="Select4">
+          <div class="col-md-4 joc-container">
+            <a href="/notes?sem=7">
+              <button class="joc joc2" id="btn" onclick="passValue('seventh-sem');passValueYear('fourth-year')">SEMSTER 7</button>
+            </a>
+          </div>
+          <div class="col-md-4 joc-container">
+            <a href="/notes?sem=8">
+              <button class="joc joc2" id="btn" onclick="passValue('eighth-sem');passValueYear('fourth-year')">SEMSTER 8</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Setup Section -->
+
+  <section class="common-section business-section" id="online_services">
+    <div class="container five text-center fw-bold common-title">
+    </div>
+
+    <div class="container six">
+      <h2 class="common-heading text-center fw-bold common-title">WHY STUDENTHUB ?</h2>
+      <hr class="w-25 mx-auto ">
+      <div class="row g-5">
+        <div class="col-xl-6 col-md-12 " data-aos="zoom-in">
+          <div class="d-flex  px-3 py-5 shadow ">
+            <img alt="GIF Image" class=" d-md-block d-none  img-fluid mx-3" src="./Image/completely-free-icon (1).webp"
+              width="150px">
+            <div class="row ">
+              <p class="mb-3 fw-bolder">COMPLETELY FREE!!!</p>
+              <p>Enjoy unlimited access to our comprehensive resources completely free of charge. No
+                hidden fees or
+                subscriptions – just valuable content at your fingertips.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-md-12 " data-aos="zoom-in">
+          <div class="d-flex  px-3 py-5 shadow ">
+            <img alt="GIF Image" class=" d-md-block d-none  img-fluid mx-3" src="./Image/5728123 (1).webp" width="150px">
+            <div class="row ">
+              <p class="mb-3 fw-bolder">DIRECT DOWNLOAD LINKS WITH HIGH SPEED</p>
+              <p>All the files are uploaded on our super-fast servers so that they can be easily
+                downloaded with high
+                speed. Say goodbye to wait times and enjoy instant access to your desired content hassle-free.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-md-12 " data-aos="zoom-in">
+          <div class="d-flex  px-3 py-5 shadow ">
+            <img alt="GIF Image" class=" d-md-block d-none  img-fluid mx-3" src="./Image/user-friendly-Icon (1).webp"
+              width="150px">
+            <div class="row ">
+              <p class="mb-3 fw-bolder">USER-FRIENDLY INTERFACE</p>
+              <p>Navigate effortlessly and accomplish tasks seamlessly with our intuitive design and
+                streamlined
+                features,
+                ensuring an enjoyable and efficient experience for all users.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-md-12 " data-aos="zoom-in">
+          <div class="d-flex  px-3 py-5 shadow ">
+            <img alt="GIF Image" class=" d-md-block d-none  img-fluid mx-3" src="./Image/collectionofnotes (1).webp"
+              width="150px">
+            <div class="row ">
+              <p class="mb-3 fw-bolder">COMPREHENSIVE COLLECTION</p>
+              <p>Explore a comprehensive collection of notes covering a wide range of subjects, topics, and educational
+                levels. From basics to advanced concepts, we've got you covered.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+<!-- Contact Us -->
+  <section class="contact">
+    <div class="content">
+      <h2>Contact Us</h2>
+    </div>
+    <div class="container seven">
+      <div class="contactInfo">
+        <div class="box" data-aos="zoom-in">
+          <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+          <div class="text">
+            <h3>Address</h3>
+            <p>12<sup>th</sup> Street, Vijay Nagar, Indore</p>
+            <!-- <p>Indore, Madhya Pradhesh</p> -->
+          </div>
+        </div>
+        <div class="box" data-aos="zoom-in">
+          <div class="icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+          <div class="text">
+            <h3>Phone</h3>
+            <p>+91 9302200806</p>
+          </div>
+        </div>
+        <div class="box" data-aos="zoom-in">
+          <div class="icon"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
+          <div class="text">
+            <h3>Email</h3>
+            <p>studenthub04@gmail.com</p>
+          </div>
+        </div>
+      </div>
+      <div class="contactForm" data-aos="zoom-in">
+        <form action="/post-message" method="POST">  
+          <h2>Send Message</h2>
+          <div class="inputBox">
+            <input type="text" name="name" required="required">
+            <span>Full Name</span>
+          </div>
+          <div class="inputBox">
+            <input type="text" name="emaillll" required="required">
+            <span>Email</span>
+          </div>
+          <div class="inputBox">
+            <textarea required="required"  name="message" value="Send"></textarea>
+            <span>Type your Message...</span>
+          </div>
+          <div class="inputBox">
+            <input type="Submit">
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  
+  <footer>
+    <div class="footerContainer">
+      <div class="socialIcons">
+        <a href=""><i class="fa-brands fa-facebook"></i></a>
+        <a href=""><i class="fa-brands fa-instagram"></i></a>
+        <a href=""><i class="fa-brands fa-twitter"></i></a>
+        <a href=""><i class="fa-brands fa-google-plus"></i></a>
+        <a href=""><i class="fa-brands fa-youtube"></i></a>
+      </div>
+      <div class="footerNav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+          <li><a href="/ourteam">our Team</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!--Bootstrap JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+  <!--fontawesome-->
+  <script src="https://kit.fontawesome.com/67fc93ad78.js" crossorigin="anonymous"></script>
+
+  <!-- function for First Year buttton -->
+  <script>
+    function setdefault1() {
+      let Select1 = document.querySelector("#Select1");
+      Select1.style.display = "none";
+    }
+
+    function showdetails1() {
+      let Select1 = document.querySelector("#Select1");
+      let btn = document.querySelector("#btn");
+      if (Select1.style.display != "none") {
+        Select1.style.display = "none"
+      }
+      else {
+        Select1.style.display = "flex"
+      }
+    }
+  </script>
+
+  <!-- function for Second Year buttton -->
+  <script>
+    function setdefault2() {
+      let Select2 = document.querySelector("#Select2");
+      Select2.style.display = "none";
+    }
+
+    function showdetails2() {
+      let Select2 = document.querySelector("#Select2");
+      let btn = document.querySelector("#btn");
+      if (Select2.style.display != "none") {
+        Select2.style.display = "none"
+      }
+      else {
+        Select2.style.display = "flex"
+      }
+    }
+  </script>
+
+  <!-- function for Third Year buttton -->
+  <script>
+    function setdefault3() {
+      let Select3 = document.querySelector("#Select3");
+      Select3.style.display = "none";
+    }
+
+    function showdetails3() {
+      let Select3 = document.querySelector("#Select3");
+      let btn = document.querySelector("#btn");
+      if (Select3.style.display != "none") {
+        Select3.style.display = "none"
+      }
+      else {
+        Select3.style.display = "flex"
+      }
+    }
+  </script>
+
+  <!-- function for Fourth Year buttton -->
+  <script>
+    function setdefault4() {
+      let Select4 = document.querySelector("#Select4");
+      Select4.style.display = "none";
+    }
+    function showdetails4() {
+      let Select4 = document.querySelector("#Select4");
+      let btn = document.querySelector("#btn");
+      if (Select4.style.display != "none") {
+        Select4.style.display = "none"
+      }
+      else {
+        Select4.style.display = "flex"
+      }
+    }
+  </script>
+
+  <script>
+    const activepage = window.location.pathname;
+    const navlinks = document.querySelectorAll('nav a');
+
+    navlinks.forEach(link => {
+      // Check if the current link's href matches the active page
+      if (link.href.includes(`${activepage}`)) {
+        link.classList.add('active');
+      } else {
+        // If the active page is not the home page, remove the active class from all links
+        if (activepage !== '/' && link.getAttribute('href') !== './search.html') {
+          link.classList.remove('active');
+        }
+      }
+    });
+
+    // //function for navigation
+    // function navigateToSearch(year) {
+    //   window.location.href = `search.html?year=${year}`;
+    // }
+
+  </script>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      offset: 230,
+      duration: 500,
+    });
+  </script>
+
+  <!-- <script>
+    function getUrlParams() {
+    const searchParams = new URLSearchParams(window.location.search);
+    const params = {};
+    for (const [key, value] of searchParams) {
+        params[key] = value;
+    }
+    return params;
+}
+  </script> -->
+
+    <!-- for semester selection -->
+<script>
+  function passValue(selectedValue) { 
+      localStorage.setItem('selectedValue', selectedValue);
+      window.location.href = 'search.html';
+  }
+</script>
+
+<!-- for year selection -->
+<script>        //
+function passValueYear(selectedValueYear) {
+    localStorage.setItem('selectedValueYear', selectedValueYear);
+    window.location.href = 'search.html';
+}
+</script>
+
+
+</body>
+
+</html>

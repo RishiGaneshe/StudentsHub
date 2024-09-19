@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Form Submission</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="url"],
+        input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 5px 0 0px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+        .form-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-section input {
+            margin-top: 5px;
+        }
+
+        #Btn{
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: p5x 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #Btn:hover{
+            background-color: #0056b3;
+        }
+        
+         /* Alert box CSS */
+ .alert {
+          display: none;
+          position: fixed;
+          top: 70px;
+          left: 50%;
+          transform: translateX(-50%);
+          padding: 10px 20px;
+          background-color: #f44336;
+          color: white;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+          z-index: 1000;
+      }
+    
+        
+    </style>
+</head>
+<body>
+
+     <% if(error) { %>
+        <div class="alert" id="errorAlert">
+            <%= error %>
+       </div>
+       <script>
+           document.getElementById('errorAlert').style.display = 'block';
+
+           setTimeout(function() {
+               document.getElementById('errorAlert').style.display = 'none';
+           }, 3000);
+       </script>
+     <% }%>
+
+
+    <form action="/admin/submit-form" method="POST">
+        <h1 id="H1">Upload Subject Data</h1>
+
+        <div class="form-section">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-section">
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id" required>
+        </div>
+
+        <div class="form-section">
+            <label for="sub_syl">Subjects Syllabus:</label>
+            <input type="text" name="Sub_Syl[]" placeholder="Module 01">
+            <input type="text" name="Sub_Syl[]" placeholder="Module 02">
+            <input type="text" name="Sub_Syl[]" placeholder="Module 03">
+            <input type="text" name="Sub_Syl[]" placeholder="Module 04">
+            <input type="text" name="Sub_Syl[]" placeholder="Module 05">
+        </div>
+
+        <div class="form-section">
+            <label for="previousY">Previous Year:</label>
+            <input type="text" id="previousY" name="previousY">
+        </div>
+
+        <div class="form-section">
+            <label for="module1">Module 1:</label>
+            <input type="text" id="module1" name="module1" value="Module-1">
+
+            <label for="module2">Module 2:</label>
+            <input type="text" id="module2" name="module2" value="Module-2">
+
+            <label for="module3">Module 3:</label>
+            <input type="text" id="module3" name="module3" value="Module-3">
+
+            <label for="module4">Module 4:</label>
+            <input type="text" id="module4" name="module4" value="Module-4">
+
+            <label for="module5">Module 5:</label>
+            <input type="text" id="module5" name="module5" value="Module-5">
+        </div>
+
+        <div class="form-section">
+            <label for="module1_url">Module 1 URL:</label>
+            <input type="url" id="module1_url" name="module1_url">
+
+            <label for="module2_url">Module 2 URL:</label>
+            <input type="url" id="module2_url" name="module2_url">
+
+            <label for="module3_url">Module 3 URL:</label>
+            <input type="url" id="module3_url" name="module3_url">
+
+            <label for="module4_url">Module 4 URL:</label>
+            <input type="url" id="module4_url" name="module4_url">
+
+            <label for="module5_url">Module 5 URL:</label>
+            <input type="url" id="module5_url" name="module5_url">
+        </div>
+
+        <div class="form-section">
+            <label for="book_url">Book URLs:</label>
+            <input type="url" name="book_url[]" placeholder="Book URL 1">
+            <input type="url" name="book_url[]" placeholder="Book URL 2">
+            <input type="url" name="book_url[]" placeholder="Book URL 3">
+        </div>
+
+        <div class="form-section">
+            <label for="book_image">Book Images:</label>
+            <input type="url" name="book_image[]" placeholder="Book Image URL 1">
+            <input type="url" name="book_image[]" placeholder="Book Image URL 2">
+            <input type="url" name="book_image[]" placeholder="Book Image URL 3">
+        </div>
+
+        <div class="form-section">
+            <input type="submit" value="Submit">
+        </div>
+
+        <div class="form-section">
+            <button id="Btn" onclick="window.history.back();">Back</button>
+        </div>
+    </form>
+</body>
+</html>

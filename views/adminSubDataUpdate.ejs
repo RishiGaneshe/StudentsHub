@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject Data Modification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .form-container {
+            width: 60%;
+            height: 80%;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #303030 ;        
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="url"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="url"]:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+        }
+
+        #myButton {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        #myButton:hover {
+            background-color: #0056b3;
+        }
+
+        #H1{
+            color: #007bff;
+        }
+
+        .book-images img {
+            max-width: 100px;
+            margin-right: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Submit button styling */
+        .form-group input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        #Btn{
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-top: 3px;
+        }
+
+        #Btn:hover{
+            background-color: #0056b3;
+        }
+
+        /* Alert box CSS */
+ .alert {
+          display: none;
+          position: fixed;
+          top: 70px;
+          left: 50%;
+          transform: translateX(-50%);
+          padding: 10px 20px;
+          background-color: #f44336;
+          color: white;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+          z-index: 1000;
+      }
+    
+
+    </style>
+</head>
+<body>
+     
+    <% if (error) { %>
+        <div class="alert" id="errorAlert">
+             <%= error %>
+        </div>
+        <script>
+            // Show the alert box
+            document.getElementById('errorAlert').style.display = 'block';
+ 
+            // Hide the alert box after 3 seconds
+            setTimeout(function() {
+                document.getElementById('errorAlert').style.display = 'none';
+            }, 3000);
+        </script>
+     <% } %>
+
+    <form class="form-container"  id="result" action="/admin/modify/update" method="POST">
+        <div class="form-group">
+            <h1 align="center" id="H1">UPDATE DATA</h1>
+            <label for="name">Subject Name:</label>
+            <input type="text" id="name" name="name" value="<%= subData.name %>" readonly required>
+        </div>
+        <div class="form-group">
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id" value="<%= subData.id %>" readonly required>
+        </div>
+        <div class="form-group">
+            <label for="module1">Module 01:</label>
+            <input type="text" id="module1" name="module1" value="<%= subData.module1 %>">
+        </div>
+        <div class="form-group">
+            <label for="module1_url">Module 01 URL:</label>
+            <input type="url" id="module1_url" name="module1_url" value="<%= subData.module1_url %>">
+        </div>
+        <div class="form-group">
+            <label for="module2">Module 02:</label>
+            <input type="text" id="module2" name="module2" value="<%= subData.module2 %>">
+        </div>
+        <div class="form-group">
+            <label for="module2_url">Module 02 URL:</label>
+            <input type="url" id="module2_url" name="module2_url" value="<%= subData.module2_url %>">
+        </div>
+        <div class="form-group">
+            <label for="module3">Module 03:</label>
+            <input type="text" id="module3" name="module3" value="<%= subData.module3 %>">
+        </div>
+        <div class="form-group">
+            <label for="module3_url">Module 03 URL:</label>
+            <input type="url" id="module3_url" name="module3_url" value="<%= subData.module3_url %>">
+        </div>
+        <div class="form-group">
+            <label for="module4">Module 04:</label>
+            <input type="text" id="module4" name="module4" value="<%= subData.module4 %>">
+        </div>
+        <div class="form-group">
+            <label for="module4_url">Module 04 URL:</label>
+            <input type="url" id="module4_url" name="module4_url" value="<%= subData.module4_url %>">
+        </div>
+        <div class="form-group">
+            <label for="module5">Module 05:</label>
+            <input type="text" id="module5" name="module5" value="<%= subData.module5 %>">
+        </div>
+        <div class="form-group">
+            <label for="module5_url">Module 05 URL:</label>
+            <input type="url" id="module5_url" name="module5_url" value="<%= subData.module5_url %>">
+        </div>
+        <div class="form-group">
+            <label for="previousY">Previous Year Question Paper URL:</label>
+            <input type="url" id="previousY" name="previousY" value="<%= subData.previousY %>">
+        </div>
+        <div class="form-group">
+            <label for="book_url">Book URLs:</label>
+            <input type="url" name="book_url[]" placeholder="Book URL 1" value="<%= subData.book_url[0] %>">
+            <input type="url" name="book_url[]" placeholder="Book URL 2" value="<%= subData.book_url[1] %>">
+            <input type="url" name="book_url[]" placeholder="Book URL 3" value="<%= subData.book_url[2] %>">
+        </div>
+        <div class="form-group">
+            <label for="book_Images">Book Image URL:</label>
+            <input type="url" name="book_image[]" placeholder="Book Image URL 1" value="<%= subData.book_image[0] %>">
+            <input type="url" name="book_image[]" placeholder="Book Image URL 2" value="<%= subData.book_image[1] %>">
+            <input type="url" name="book_image[]" placeholder="Book Image URL 3" value="<%= subData.book_image[2] %>">
+        </div>
+        <div class="form-group">
+            <label for="Sub_Syl">Subject Syllabus:</label>
+            <input type="text" name="Sub_Syl[]" placeholder="Syllabus Module 1" value="<%= subData.Sub_Syl[0] %>">
+            <input type="text" name="Sub_Syl[]" placeholder="Syllabus Module 2" value="<%= subData.Sub_Syl[1] %>">
+            <input type="text" name="Sub_Syl[]" placeholder="Syllabus Module 3" value="<%= subData.Sub_Syl[2] %>">
+            <input type="text" name="Sub_Syl[]" placeholder="Syllabus Module 4" value="<%= subData.Sub_Syl[3] %>">
+            <input type="text" name="Sub_Syl[]" placeholder="Syllabus Module 5" value="<%= subData.Sub_Syl[4] %>">
+        </div>
+        <div class="form-group">
+            <input type="submit" value="submit">
+        </div>
+        <div class="form-group">
+            <button type="button" id="Btn" onclick=window.location.href="/admin/modify"  >Back</button>
+         </div>
+    </form>
+          
+</body>
+</html>
