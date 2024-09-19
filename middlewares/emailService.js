@@ -5,7 +5,7 @@ const sgMail = require('@sendgrid/mail');
 const UserData= require('../models/userData.js');
 
 
-sgMail.setApiKey('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');
+sgMail.setApiKey(process.env.EMAIL_API_KEY);
 
 
 async function emailAuthentication(req,res,next){
