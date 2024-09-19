@@ -20,9 +20,10 @@
 ## 🛠️ Tech Stack
 
 - **Backend**: Node.js, Express.js
-- **Frontend**: EJS, HTML, CSS, JS
+- **Frontend**: HTML, CSS, Javascript, Bootstrap
 - **Database**: MongoDB
 - **Session Management**: Express-session and cookies for authentication
+- **Hosting Services**: AWS EC2 webhosting services for website hosting 
 
 ---
 
