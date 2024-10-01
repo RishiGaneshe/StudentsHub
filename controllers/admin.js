@@ -342,7 +342,14 @@ async function handlePostChangePassword(req,res){                        // POST
          const {email}= req.body;
 
          const isValidEmail = validator.isEmail(email);
-         if ( !isValidEmail ) return res.status(400).send('Invalid Email format');  
+         if ( !isValidEmail ) return res.status(400).send('Invalid Email format'); 
+
+          const mails= [
+          "studentshub.fun"
+          ]
+          const domain= email.substring(email.lastIndexOf("@")+1)
+          const tempMail=mails.includes(domain.toLowerCase());
+          if(!tempMail) { return res.status(400).render('adminUpdateEmail',{error:'This email is Temporary and from untrusted domains'}) }  
 
          const username= sessionStore[sessionId].username
          const user= await UserData.findOne({username:{ $eq: username }})
