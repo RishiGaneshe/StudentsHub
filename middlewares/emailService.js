@@ -17,7 +17,7 @@ async function emailAuthentication(req,res,next){
      if (!isValidEmail) return res.status(400).send('Invalid Email Or OTP '); 
     
      const mails= [
-          "ipsacademy.org"
+          "studentshub.fun"
      ]
      const domain= email.substring(email.lastIndexOf("@")+1)
      const tempMail=mails.includes(domain.toLowerCase());
