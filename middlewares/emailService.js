@@ -1,6 +1,7 @@
 require('dotenv').config();
 const crypto= require('crypto')
 const OTP= require('../models/otp.js')
+const validator = require('validator')
 const sgMail = require('@sendgrid/mail');
 const UserData= require('../models/userData.js');
 
@@ -14,7 +15,7 @@ async function emailAuthentication(req,res,next){
      if(!email)  { return res.status(403).end('Email is required')}
     
      const isValidEmail = validator.isEmail(email);
-     if (!isValidEmail) return res.status(400).send('Invalid Email Or OTP '); 
+     if (!isValidEmail) return res.status(400).send('Invalid Email'); 
     
      const mails= [
           "studentshub.fun"
