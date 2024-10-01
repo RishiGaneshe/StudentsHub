@@ -342,7 +342,7 @@ async function handlePostChangePassword(req,res){                        // POST
          const {email}= req.body;
 
          const isValidEmail = validator.isEmail(email);
-         if (!isValidUsername || !isValidEmail || !isValidOtp ) return res.status(400).send('Invalid Email format');  
+         if ( !isValidEmail ) return res.status(400).send('Invalid Email format');  
 
          const username= sessionStore[sessionId].username
          const user= await UserData.findOne({username:{ $eq: username }})
