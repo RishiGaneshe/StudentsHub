@@ -1,4 +1,10 @@
 ## 🏫 Students Hub
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node-dot-js&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+
 
 **Student Hub** is a web application designed for students to manage academic resources, access personalized profiles, and stay organized with their study materials. Built using **Node.js**, **Express.js**, **EJS**, **HTML**, and **CSS**, the app provides a clean and responsive interface to help students track and manage their educational content.
 - **[Visit Students Hub](https://studentshub.fun)** - 'Your Hub for Students'.
